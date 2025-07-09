@@ -1,171 +1,433 @@
+/* 
+ * Global Styles 
+ * Sets up base styles for the entire document 
+ */
+:root {
+  --gold-dark: #B8860B;
+  --gold-light: #D4AF37;
+  --gold-lighter: #FFD700;
+  --black: #0a0a0a;
+  --black-light: #1a1a1a;
+  --white: #ffffff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+}
+
+/* 
+ * Base HTML and Body Styles 
+ * Ensures proper document flow and background 
+ */
 html {
-    overflow-x: hidden;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-
-/*Body style*/
 body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #000000 30%,          /* black at top */
-            #0a0a0a 45%,         /* very dark */
-            #1a1a1a 60%,         /* fading to gold */
-            #B8860B 75%,         /* dark gold */
-            #D4AF37 100%         /* gold at bottom */
-        );
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--white);
+  background: linear-gradient(
+    to bottom,
+    var(--black) 30%,
+    var(--black-light) 45%,
+    #2a2a2a 60%,
+    var(--gold-dark) 75%,
+    var(--gold-light) 100%
+  );
+  background-attachment: fixed;
+  line-height: 1.6;
 }
 
+/* 
+ * Typography Enhancements 
+ * Sets up beautiful typography hierarchy 
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--gold-light);
+}
 
-/*Navbar style*/
+.display-3 {
+  font-size: calc(1.525rem + 3.3vw);
+  letter-spacing: -0.5px;
+}
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.text-gold {
+  color: var(--gold-light) !important;
+}
+
+/* 
+ * Navigation Bar 
+ * Creates an elegant fixed navigation 
+ */
 .navbar {
-    background-color: #0a0a0a !important; /* royal black */
-    box-shadow:
-        0 4px 20px rgba(184, 134, 11, 0.6),   /* larger dark gold glow */
-        0 0 40px rgba(212, 175, 55, 0.2);     /* optional soft outer gold halo */
-    border-bottom: 1px solid rgba(139, 117, 0, 0.4);
-    backdrop-filter: blur(4px);
+  background-color: rgba(10, 10, 10, 0.9) !important;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 30px rgba(184, 134, 11, 0.4);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 0.75rem 0;
+  transition: all 0.3s ease;
 }
 
-.navbar .navbar-brand,
-.navbar .nav-link {
-    color: #FFD700 !important; /* bright gold for clarity */
-    transition: color 0.3s ease, border 0.3s ease;
+.navbar.scrolled {
+  padding: 0.5rem 0;
+  background-color: rgba(10, 10, 10, 0.95) !important;
 }
 
-.navbar .nav-link:hover,
-.navbar .nav-link.active {
-    color: #ffffff !important; /* white on hover for contrast */
-    border-bottom: 2px solid #D4AF37; /* underline effect */
+.navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--gold-light);
 }
 
-
-
-/*Carousel Styling*/
-.carousel-inner img {
-    max-height: 700px;
-    object-fit: cover;
+.navbar-brand .brand-text {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
+.nav-link {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem !important;
+  position: relative;
+  color: var(--gold-light) !important;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+  right: 1rem;
+  height: 1px;
+  background: var(--gold-light);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.btn-outline-gold {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--gold-light);
+  border-color: var(--gold-light);
+  transition: all 0.3s ease;
+}
+
+.btn-outline-gold:hover {
+  background-color: var(--gold-light);
+  color: var(--black) !important;
+}
+
+/* 
+ * Hero Section 
+ * Styles for the main hero content area 
+ */
+header {
+  position: relative;
+  padding: 3rem 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+/* 
+ * Carousel Styles 
+ * Creates an elegant image slider 
+ */
+.carousel {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-inner {
+  border-radius: 8px;
+}
+
+.carousel-item {
+  height: 600px;
+}
+
+.carousel-item img {
+  object-fit: cover;
+  height: 100%;
+  filter: brightness(0.9);
+}
+
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.5);
+  right: 0;
+  left: 0;
+  bottom: 0;
+  padding: 2rem;
+  text-align: left;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 8%;
+}
+
+/* 
+ * Card Styles for Products 
+ * Creates elegant product cards 
+ */
+.card {
+  border: none;
+  background: rgba(26, 26, 26, 0.7);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.card-img-container {
+  position: relative;
+  overflow: hidden;
+}
 
 .card-img-top {
-    max-height: 300px;
-    object-fit: cover;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-
-
-/*Header styling*/
-header {
-    position: relative;
-    padding: 3rem 2rem;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 2rem;
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
-        url('./images/perfumes/pall.jpg') center/cover no-repeat;
-    z-index: -1;
+.card:hover .overlay {
+  opacity: 1;
 }
 
-header h1 {
-    color: #B8860B; /* Dark gold */
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    font-size: 3rem;
-    margin-bottom: 1rem;
+.card:hover .card-img-top {
+  transform: scale(1.05);
 }
 
-header h3 {
-    color: #D4AF37; /* Lighter gold */
-    font-weight: 300;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    margin-bottom: 2rem;
+.price {
+  color: var(--gold-light);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
 }
 
-/* Responsive adjustments */
+/* 
+ * Footer Styles 
+ * Creates a multi-column elegant footer 
+ */
+footer {
+  background: linear-gradient(to right, #000000, #0a0a0a) !important;
+  color: var(--white);
+}
+
+footer h5 {
+  color: var(--gold-light);
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+footer h5::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 1px;
+  background: var(--gold-light);
+}
+
+footer a {
+  color: var(--gray);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--gold-light);
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.1);
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: var(--gold-light);
+  color: var(--black) !important;
+}
+
+/* 
+ * Utility Classes 
+ * Reusable styles for common patterns 
+ */
+.bg-dark-gradient {
+  background: linear-gradient(to bottom, #0a0a0a, #000000);
+  padding: 5rem 0;
+}
+
+.divider {
+  width: 80px;
+  height: 2px;
+  background: var(--gold-light);
+  margin: 1.5rem auto;
+}
+
+.hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-effect:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-gold {
+  background-color: var(--gold-light);
+  color: var(--black);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+  background-color: var(--gold-dark);
+  color: var(--white);
+}
+
+/* 
+ * Responsive Adjustments 
+ * Ensures proper display on all devices 
+ */
+@media (max-width: 992px) {
+  .carousel-item {
+    height: 500px;
+  }
+}
+
 @media (max-width: 768px) {
-    header {
-        padding: 2rem 1rem;
-        text-align: center;
-    }
-    
-    header h1 {
-        font-size: 2.2rem;
-    }
-    
-    header h3 {
-        font-size: 1.2rem;
-    }
+  .navbar-brand .brand-text {
+    font-size: 0.9rem;
+  }
+  
+  .carousel-item {
+    height: 400px;
+  }
+  
+  .display-3 {
+    font-size: calc(1.325rem + 2.1vw);
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-item {
+    height: 300px;
+  }
+  
+  .navbar-nav {
+    padding-top: 1rem;
+  }
+  
+  .nav-link {
+    padding: 0.5rem 0 !important;
+  }
+  
+  footer .col-md-6 {
+    text-align: center !important;
+  }
+  
+  footer h5::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 
-/* Hamburger button styling */
+
+
+
+/* 
+ * Custom Hamburger Menu Styles 
+ * Matches brand color and transforms to X 
+ */
 .navbar-toggler {
-    border-color: rgba(184, 134, 11, 0.5);
-    position: relative;
+  border: none;
+  padding: 0.5rem;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .navbar-toggler-icon {
-    background-image: none !important;
-    position: relative;
-    width: 24px;
-    height: 16px;
+  background-image: none !important;
+  position: relative;
+  width: 24px;
+  height: 2px;
+  background-color: var(--gold-light);
+  transition: all 0.3s ease;
 }
 
 .navbar-toggler-icon::before,
-.navbar-toggler-icon::after,
-.navbar-toggler-icon span {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #B8860B;
-    transition: all 0.3s ease;
+.navbar-toggler-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background-color: var(--gold-light);
+  transition: all 0.3s ease;
 }
 
 .navbar-toggler-icon::before {
-    top: 0;
+  transform: translateY(-8px);
 }
 
 .navbar-toggler-icon::after {
-    bottom: 0;
+  transform: translateY(8px);
 }
 
-.navbar-toggler-icon span {
-    top: 50%;
-    transform: translateY(-50%);
+/* Transform to X when menu is open */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+  background-color: transparent;
 }
 
-/* Optional: Add animation when clicked */
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
-    transform: rotate(45deg) translate(5px, 5px);
+  transform: rotate(45deg);
 }
 
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
-    transform: rotate(-45deg) translate(5px, -5px);
+  transform: rotate(-45deg);
 }
 
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon span {
-    opacity: 0;
+/* Optional: Add focus state */
+.navbar-toggler:focus {
+  background-color: rgba(212, 175, 55, 0.1);
 }
-
-
